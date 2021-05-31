@@ -5,7 +5,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 class ImdbAPI {
 
-    private val baseurl = "http://www.omdbapi.com/?apikey=31ea2554&"
+    private val baseurl = "http://www.omdbapi.com/"
 
     fun createRetrofit(): Retrofit = Retrofit.Builder()
         .baseUrl(baseurl)

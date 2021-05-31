@@ -10,8 +10,11 @@ import retrofit2.http.Query
 
 interface ImdbService {
 
-    @GET("")
-    fun getFilmes(@Query("s") titulo: String): Call <List<Filme>>
+    @GET(".")
+    fun getFilmes(
+        @Query("s") titulo: String,
+        @Query("apikey") apikey: String = "31ea2554"
+    ): Call<List<Filme>>
 
 
 }
