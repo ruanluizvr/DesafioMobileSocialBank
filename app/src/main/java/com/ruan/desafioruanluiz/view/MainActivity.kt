@@ -1,11 +1,12 @@
-package com.ruan.desafioruanluiz
+package com.ruan.desafioruanluiz.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import com.ruan.desafioruanluiz.network.Repository
+import com.ruan.desafioruanluiz.R
+import com.ruan.desafioruanluiz.repository.RepositoryImpl
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         retornoBusca.text = null
 
-        val repository = Repository()
+        val repository = RepositoryImpl()
 
         bttBuscar.setOnClickListener {
 
@@ -30,11 +31,12 @@ class MainActivity : AppCompatActivity() {
 
             if (chaveBusca != "") {
                 GlobalScope.launch {
-                    val list = repository.getFilmeList(chaveBusca)
+                    val response = repository.getFilmeList(chaveBusca)
 
-                    list.forEach {
-                        retornoBusca.text =
-                            retornoBusca.text.toString() + "Poster: " + it.Poster + "Titulo: " + it.Title + "Ano: " + it.Year + "\n"
+                    val texto = response?.Search?.get(0)?.Title
+
+                    runOnUiThread {
+                        retornoBusca.text = texto
                     }
                 }
             }

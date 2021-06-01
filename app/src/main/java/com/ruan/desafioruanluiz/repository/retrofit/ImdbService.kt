@@ -1,11 +1,9 @@
-package com.ruan.desafioruanluiz.network
+package com.ruan.desafioruanluiz.repository.retrofit
 
 
-import com.ruan.desafioruanluiz.model.DetalhesFilme
-import com.ruan.desafioruanluiz.model.Filme
+import com.ruan.desafioruanluiz.repository.model.BaseResponse
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ImdbService {
@@ -13,8 +11,7 @@ interface ImdbService {
     @GET(".")
     fun getFilmes(
         @Query("s") titulo: String,
+        @Query("type") type: String = "movie",
         @Query("apikey") apikey: String = "31ea2554"
-    ): Call<List<Filme>>
-
-
+    ): Call<BaseResponse>
 }

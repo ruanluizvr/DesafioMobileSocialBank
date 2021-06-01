@@ -1,4 +1,4 @@
-package com.ruan.desafioruanluiz.model
+package com.ruan.desafioruanluiz.repository.model
 
 data class DetalhesFilme(
     val Title: String,

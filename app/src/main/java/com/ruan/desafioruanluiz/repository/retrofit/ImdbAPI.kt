@@ -1,4 +1,4 @@
-package com.ruan.desafioruanluiz.network
+package com.ruan.desafioruanluiz.repository.retrofit
 
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory

@@ -1,8 +1,11 @@
-package com.ruan.desafioruanluiz.network
+package com.ruan.desafioruanluiz.repository
 
-import com.ruan.desafioruanluiz.model.Filme
+import com.ruan.desafioruanluiz.repository.model.BaseResponse
+import com.ruan.desafioruanluiz.repository.retrofit.ImdbAPI
+import com.ruan.desafioruanluiz.repository.retrofit.ImdbService
 
-class Repository {
+
+class RepositoryImpl {
 
     private val service: ImdbService
 
@@ -12,9 +15,7 @@ class Repository {
         service = apiBuilder.createImdbAPI(retrofit)
     }
 
-    fun getFilmeList(name: String): List<Filme> {
-        val filmeList = mutableListOf<Filme>()
-
+    fun getFilmeList(name: String): BaseResponse? {
 
         val response = service.getFilmes(name).execute()
 
@@ -24,14 +25,7 @@ class Repository {
             if (filme != null) {
                 return filme
             }
-
-
         }
-
-
-
-
-        return (filmeList)
+        return null
     }
-
 }
