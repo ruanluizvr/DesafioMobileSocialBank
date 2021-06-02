@@ -18,7 +18,9 @@ class MainActivity : AppCompatActivity() {
 
         val bttBuscar = findViewById<Button>(R.id.bttBuscar)
 
-        val retornoBusca = findViewById<TextView>(R.id.retornoBusca)
+        
+
+        val retornoBusca = findViewById<TextView>(R.id.Titulo)
 
         retornoBusca.text = null
 
@@ -33,6 +35,11 @@ class MainActivity : AppCompatActivity() {
                 GlobalScope.launch {
                     val response = repository.getFilmeList(chaveBusca)
 
+                    response?.Search?.forEach {
+
+
+                    }
+
                     val texto = response?.Search?.get(0)?.Title
 
                     runOnUiThread {
@@ -41,6 +48,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+
+
+
     }
 }
 
