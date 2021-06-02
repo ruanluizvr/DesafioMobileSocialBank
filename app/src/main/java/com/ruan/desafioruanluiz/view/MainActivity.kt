@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-
         val bttBuscar = findViewById<Button>(R.id.bttBuscar)
 
         bttBuscar.setOnClickListener {
@@ -51,16 +50,10 @@ class MainActivity : AppCompatActivity() {
             adapter = FilmeAdapter(list) {
 
 
-                val intent = Intent(this@MainActivity, DetalhesFilme::class.java).apply{
-                   putExtra("cod", it.cod)
+                val intent = Intent(this@MainActivity, DetalhesFilme::class.java).apply {
+                    putExtra("cod", it.cod)
                 }
                 startActivity(intent)
-
-
-
-
-
-                //chamar outra tela aqui
 
 
             }
