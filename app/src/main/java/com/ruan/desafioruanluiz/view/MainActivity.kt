@@ -1,55 +1,77 @@
 package com.ruan.desafioruanluiz.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.ruan.desafioruanluiz.R
+import androidx.activity.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.ruan.desafioruanluiz.domain.model.model.FilmeView
+import com.ruan.desafioruanluiz.presentation.MainViewModel
 import com.ruan.desafioruanluiz.repository.RepositoryImpl
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
+
+    private val viewModel: MainViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
 
+
         val bttBuscar = findViewById<Button>(R.id.bttBuscar)
-
-        
-
-        val retornoBusca = findViewById<TextView>(R.id.Titulo)
-
-        retornoBusca.text = null
-
-        val repository = RepositoryImpl()
 
         bttBuscar.setOnClickListener {
 
 
             val chaveBusca = findViewById<EditText>(R.id.chaveBusca).text.toString()
 
+
             if (chaveBusca != "") {
-                GlobalScope.launch {
-                    val response = repository.getFilmeList(chaveBusca)
 
-                    response?.Search?.forEach {
+                setObservers()
+                viewModel.getFilmeList(chaveBusca)
 
 
-                    }
-
-                    val texto = response?.Search?.get(0)?.Title
-
-                    runOnUiThread {
-                        retornoBusca.text = texto
-                    }
-                }
             }
         }
+    }
+
+    private fun setListOnScreen(list: List<FilmeView>) {
+        findViewById<RecyclerView>(R.id.recyclerViewFilmes).apply {
+            layoutManager = GridLayoutManager(this@MainActivity, 3)
+
+            adapter = FilmeAdapter(list) {
 
 
+                val intent = Intent(this@MainActivity, DetalhesFilme::class.java).apply{
+                   putExtra("cod", it.cod)
+                }
+                startActivity(intent)
+
+
+
+
+
+                //chamar outra tela aqui
+
+
+            }
+        }
+    }
+
+
+    private fun setObservers() {
+        viewModel.filmelist.observe(this) {
+            setListOnScreen(it)
+        }
 
 
     }
