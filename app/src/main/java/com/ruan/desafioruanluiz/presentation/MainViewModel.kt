@@ -5,9 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ruan.desafioruanluiz.domain.FilmeUseCase
-import com.ruan.desafioruanluiz.domain.model.model.FilmeView
-import com.ruan.desafioruanluiz.repository.RepositoryImpl
-import com.ruan.desafioruanluiz.repository.retrofit.ImdbAPI
+import com.ruan.desafioruanluiz.domain.model.model.FilmeModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -19,8 +17,8 @@ class MainViewModel: ViewModel() {
         useCase = FilmeUseCase()
     }
 
-    private val _filmeList: MutableLiveData<List<FilmeView>> = MutableLiveData()
-    val filmelist: LiveData<List<FilmeView>>
+    private val _filmeList: MutableLiveData<List<FilmeModel>> = MutableLiveData()
+    val filmelist: LiveData<List<FilmeModel>>
         get() = _filmeList
 
     fun getFilmeList(name: String){
