@@ -21,10 +21,12 @@ class MainViewModel: ViewModel() {
     val filmelist: LiveData<List<FilmeModel>>
         get() = _filmeList
 
-    fun getFilmeList(name: String){
+    fun getFilmes(name: String){
 
         viewModelScope.launch(Dispatchers.IO) {
-            _filmeList.postValue(useCase.getFilmeList(name))
+            _filmeList.postValue(
+                useCase.getFilmeList(name)
+            )
         }
     }
 }

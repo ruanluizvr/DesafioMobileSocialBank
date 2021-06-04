@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             if (chaveBusca != "") {
 
                 setObservers()
-                viewModel.getFilmeList(chaveBusca)
+                viewModel.getFilmes(chaveBusca)
             }
         }
     }
