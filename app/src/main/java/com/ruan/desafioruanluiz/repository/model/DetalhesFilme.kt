@@ -6,5 +6,5 @@ data class DetalhesFilme(
     val Year: Int,
     val Genre: String,
     val Plot: String,
-    val imdbRating: Float
+    val imdbRating: String
 )

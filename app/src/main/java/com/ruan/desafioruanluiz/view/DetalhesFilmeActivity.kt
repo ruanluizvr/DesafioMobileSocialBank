@@ -2,6 +2,7 @@ package com.ruan.desafioruanluiz.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Patterns
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -25,7 +26,7 @@ class DetalhesFilmeActivity : AppCompatActivity() {
     lateinit var sinopse: TextView
     lateinit var nota: TextView
 
-    lateinit var progressBar : ProgressBar
+    lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +39,7 @@ class DetalhesFilmeActivity : AppCompatActivity() {
         nota = findViewById<TextView>(R.id.nota)
         sinopse = findViewById<TextView>(R.id.sinopse)
 
-        progressBar =  findViewById<ProgressBar>(R.id.progressBar)
+        progressBar = findViewById<ProgressBar>(R.id.progressBar)
 
 
         val params = intent.extras
@@ -53,12 +54,22 @@ class DetalhesFilmeActivity : AppCompatActivity() {
         viewModel.filmeDetalhe.observe(this) {
             titulo.text = it.Title
             dataLancamento.text = it.Year.toString()
-            genero.text = it.Genre
+
+            if (it.Genre == "N/A") {
+                genero.visibility = View.GONE
+            } else {
+                genero.text = it.Genre
+            }
+
             sinopse.text = it.Plot
             nota.text = it.imdbRating.toString()
-            Glide.with(this)
-                .load(it.Poster)
-                .into(poster)
+
+            if (Patterns.WEB_URL.matcher(it.Poster).matches()) {
+
+                Glide.with(this)
+                    .load(it.Poster)
+                    .into(poster)
+            }
 
             progressBar.visibility = View.GONE
 

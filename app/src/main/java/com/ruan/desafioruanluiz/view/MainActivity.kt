@@ -1,14 +1,18 @@
 package com.ruan.desafioruanluiz.view
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
-import com.ruan.desafioruanluiz.R
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.ruan.desafioruanluiz.R
 import com.ruan.desafioruanluiz.domain.model.model.FilmeModel
 import com.ruan.desafioruanluiz.presentation.MainViewModel
 import com.ruan.desafioruanluiz.view.adapters.FilmeAdapter
@@ -29,10 +33,19 @@ class MainActivity : AppCompatActivity() {
 
             if (chaveBusca != "") {
 
+                //sumir com teclado da tela ao clicar em buscar
+                hideKeyboard(it)
+
                 setObservers()
                 viewModel.getFilmes(chaveBusca)
             }
         }
+    }
+
+    //metodo para retirar o teclado da tela (Google)
+    private fun hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken,0)
     }
 
 
@@ -44,7 +57,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setListOnScreen(list: List<FilmeModel>) {
         findViewById<RecyclerView>(R.id.recyclerViewFilmes).apply {
-            layoutManager = GridLayoutManager(this@MainActivity, 2)
+            layoutManager = GridLayoutManager(this@MainActivity, 1)
 
             adapter = FilmeAdapter(list) {
 
