@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ListaFilmeFavoritosViewModel(sharedPreferences: SharedPreferences):ViewModel() {
-    val useCase = FavoriteUseCase()
+    val useCase = FavoriteUseCase(sharedPreferences)
 
 
     private val _favoriteList: MutableLiveData<List<FilmeFavorito>> = MutableLiveData()
