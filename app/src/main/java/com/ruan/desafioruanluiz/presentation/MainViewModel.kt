@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ruan.desafioruanluiz.domain.FilmeUseCase
-import com.ruan.desafioruanluiz.domain.model.model.FilmeModel
+import com.ruan.desafioruanluiz.domain.model.FilmeModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ruan.desafioruanluiz.R
-import com.ruan.desafioruanluiz.domain.model.model.FilmeModel
+import com.ruan.desafioruanluiz.domain.model.FilmeModel
 
 class FilmeAdapter (
     private val responseList: List<FilmeModel>,

@@ -1,19 +1,22 @@
 package com.ruan.desafioruanluiz.view
 
 import android.app.Activity
-import android.content.Context
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
+import android.transition.Explode
 import android.view.View
+import android.view.Window
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ruan.desafioruanluiz.R
-import com.ruan.desafioruanluiz.domain.model.model.FilmeModel
+import com.ruan.desafioruanluiz.domain.model.FilmeModel
 import com.ruan.desafioruanluiz.presentation.MainViewModel
 import com.ruan.desafioruanluiz.view.adapters.FilmeAdapter
 
@@ -21,15 +24,28 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels()
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         setContentView(R.layout.activity_main)
+
+
+
+
+
 
         val bttBuscar = findViewById<Button>(R.id.bttBuscar)
 
         bttBuscar.setOnClickListener {
 
             val chaveBusca = findViewById<EditText>(R.id.chaveBusca).text.toString()
+
+
+
+
 
             if (chaveBusca != "") {
 
@@ -48,7 +64,6 @@ class MainActivity : AppCompatActivity() {
         inputMethodManager.hideSoftInputFromWindow(view.windowToken,0)
     }
 
-
     private fun setObservers() {
         viewModel.filmelist.observe(this) {
             setListOnScreen(it)
@@ -64,11 +79,27 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this@MainActivity, DetalhesFilmeActivity::class.java).apply {
                     putExtra(DetalhesFilmeActivity.KEY_COD_FILME, it.cod)
                 }
-                startActivity(intent)
+
+
+//                // inside your activity (if you did not enable transitions in your theme)
+//                with(window) {
+//                    requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
+//
+//                    // set an exit transition
+//                    exitTransition = Explode()
+//                }
+
+                startActivity(intent, ActivityOptions
+                    .makeSceneTransitionAnimation(this@MainActivity)
+                    .toBundle())
+
+
+
             }
         }
     }
 
 
 }
+
 

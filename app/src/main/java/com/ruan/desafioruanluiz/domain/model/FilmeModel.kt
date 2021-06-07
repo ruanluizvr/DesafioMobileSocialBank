@@ -1,4 +1,4 @@
-package com.ruan.desafioruanluiz.domain.model.model
+package com.ruan.desafioruanluiz.domain.model
 
 data class FilmeModel(
     val titulo: String,
