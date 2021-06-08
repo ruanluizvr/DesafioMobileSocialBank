@@ -40,7 +40,7 @@ class DetalhesFilmeActivity : AppCompatActivity() {
         nota = findViewById(R.id.nota)
         sinopse = findViewById(R.id.sinopse)
         imgEstrela = findViewById(R.id.imgEstrela)
-        linearLayoutLike = findViewById(R.id.linearLayoutLike)
+//        linearLayoutLike = findViewById(R.id.linearLayoutLike)
 
         progressBar = findViewById<ProgressBar>(R.id.progressBar)
 
