@@ -3,7 +3,6 @@ package com.ruan.desafioruanluiz.repository
 import android.content.SharedPreferences
 import com.ruan.desafioruanluiz.repository.model.FilmeFavorito
 
-
 class FavoritesRepository(val sharedPreferences: SharedPreferences) {
 
     val key = "Favorites"
@@ -13,7 +12,6 @@ class FavoritesRepository(val sharedPreferences: SharedPreferences) {
         editor.apply()
     }
 
-
     fun delete(cod: String) {
         val editor = sharedPreferences.edit()
         editor.remove(cod)
@@ -21,10 +19,10 @@ class FavoritesRepository(val sharedPreferences: SharedPreferences) {
     }
 
     fun getFilmes(): List<FilmeFavorito> {
+
         val filmes = sharedPreferences.all as MutableMap<String, String>
-
-
         var result: MutableList<FilmeFavorito> = ArrayList()
+
         filmes.forEach {
             result.add(FilmeFavorito(it.key, it.value))
         }

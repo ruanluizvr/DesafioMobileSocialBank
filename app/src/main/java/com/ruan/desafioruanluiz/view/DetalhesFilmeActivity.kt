@@ -6,6 +6,7 @@ import android.util.Patterns
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.activity.viewModels
@@ -24,28 +25,24 @@ class DetalhesFilmeActivity : AppCompatActivity() {
     lateinit var sinopse: TextView
     lateinit var nota: TextView
     lateinit var imgEstrela: ImageView
+    lateinit var linearLayoutLike: LinearLayout
 
     lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
         setContentView(R.layout.activity_detalhes_filme)
 
-
-
-
-        poster = findViewById<ImageView>(R.id.poster)
-        titulo = findViewById<TextView>(R.id.titulo)
-        dataLancamento = findViewById<TextView>(R.id.datalancamento)
-        genero = findViewById<TextView>(R.id.genero)
-        nota = findViewById<TextView>(R.id.nota)
-        sinopse = findViewById<TextView>(R.id.sinopse)
-        imgEstrela = findViewById<ImageView>(R.id.imgEstrela)
+        poster = findViewById(R.id.poster)
+        titulo = findViewById(R.id.titulo)
+        dataLancamento = findViewById(R.id.datalancamento)
+        genero = findViewById(R.id.genero)
+        nota = findViewById(R.id.nota)
+        sinopse = findViewById(R.id.sinopse)
+        imgEstrela = findViewById(R.id.imgEstrela)
+        linearLayoutLike = findViewById(R.id.linearLayoutLike)
 
         progressBar = findViewById<ProgressBar>(R.id.progressBar)
-
 
         val params = intent.extras
         val codImdb = params?.getString(KEY_COD_FILME)
@@ -94,6 +91,12 @@ class DetalhesFilmeActivity : AppCompatActivity() {
                     .load(it.Poster)
                     .into(poster)
             }
+
+//            linearLayoutLike.setOnClickListener {
+//
+//                linearLayoutLike.setBackgroundColor(resources.getColor(android.R.color.holo_red_light))
+//
+//            }
 
             progressBar.visibility = View.GONE
 

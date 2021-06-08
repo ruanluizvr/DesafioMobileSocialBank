@@ -24,28 +24,16 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels()
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         setContentView(R.layout.activity_main)
-
-
-
-
-
 
         val bttBuscar = findViewById<Button>(R.id.bttBuscar)
 
         bttBuscar.setOnClickListener {
 
             val chaveBusca = findViewById<EditText>(R.id.chaveBusca).text.toString()
-
-
-
-
 
             if (chaveBusca != "") {
 
@@ -80,21 +68,10 @@ class MainActivity : AppCompatActivity() {
                     putExtra(DetalhesFilmeActivity.KEY_COD_FILME, it.cod)
                 }
 
-
-//                // inside your activity (if you did not enable transitions in your theme)
-//                with(window) {
-//                    requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
-//
-//                    // set an exit transition
-//                    exitTransition = Explode()
-//                }
-
+                //setando animação para transição de activitys
                 startActivity(intent, ActivityOptions
                     .makeSceneTransitionAnimation(this@MainActivity)
                     .toBundle())
-
-
-
             }
         }
     }

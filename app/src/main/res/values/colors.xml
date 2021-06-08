@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="cinzawindows">#454545</color>
+    <color name="cinzaclaro">#ACAFB6</color>
+    <color name="vermelho">#F4576C</color>
 </resources>
